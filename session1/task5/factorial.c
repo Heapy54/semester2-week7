@@ -2,7 +2,10 @@
 #include <stdlib.h>
 
 long factorial(int n)
-{
+{   
+    if(n == 0){
+        return 1;
+    }
     return n * factorial(n - 1);
 }
 
@@ -14,6 +17,11 @@ int main(int argc, char* argv[])
     }
 
     int value = atoi(argv[1]);
+
+    if(value >= 50){
+        fprintf(stderr, "Value to large has to beless than 50\n");
+        return 1;
+    }
 
     long result = factorial(value);
 
