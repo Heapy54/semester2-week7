@@ -17,11 +17,17 @@ void read_data(const char* filename, float data[], int* size)
 
     if (infile != NULL) {
         for (int i = 0; i < MAX_SIZE; ++i) {
+            value = 0.0;
             if (fgets(line, MAX_LENGTH, infile) == NULL) {
                 break;
             }
 
             sscanf(line, "%f", &value);
+            if (value < 0 || value == 0.0)
+            {
+                break;
+            }
+            
             data[i] = value;
             (*size)++;
         }
@@ -74,6 +80,11 @@ int main(int argc, char* argv[])
     float data[MAX_SIZE];
 
     read_data(argv[1], data, &size);
+
+    if(size == 0){
+        printf("ERROR ENTER VALID DATA\n");
+        return 1;
+    }
 
     float mean = mean_value(data, size);
     float std_dev = standard_deviation(data, size, mean);
