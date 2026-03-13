@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
     do {
         choice = -1;
         display_menu();
-        while (choice <= 1)
+        while (choice < 1)
             choice = get_user_menu_choice("Enter choice");
 
         switch (choice) {
